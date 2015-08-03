@@ -1,0 +1,42 @@
+//
+//  ChatApp-Prefix.pch
+//  ChatApp
+//
+//  Created by howard on 14/11/18.
+//  Copyright (c) 2014年 juchuang. All rights reserved.
+//
+
+#ifndef ChatApp_ChatApp_Prefix_pch
+#define ChatApp_ChatApp_Prefix_pch
+
+#ifdef __OBJC__
+    #define ThemeDefaultColor  [UIColor colorWithRed:118/255.0 green:195/255.0 blue:39/255.0 alpha:1]
+
+    #import "marco_constant.h"
+    #import "marco.h"
+#endif
+#endif
+//日志
+#ifdef DEBUG_LOG
+#  define LOG(fmt, ...) do {                                            \
+NSString* file = [[NSString alloc] initWithFormat:@"%s", __FILE__]; \
+NSLog((@"%@(%d) " fmt), [file lastPathComponent], __LINE__, ##__VA_ARGS__); \
+/*[file release];*/                                                 \
+} while(0)
+
+#  define LOG_METHOD NSLog(@"%s", __func__)
+#  define LOG_CMETHOD NSLog(@"%@/%@", NSStringFromClass([self class]), NSStringFromSelector(_cmd))
+#  define COUNT(p) NSLog(@"%s(%d): count = %d\n", __func__, __LINE__, [p retainCount]);
+#  define LOG_TRACE(x) do {printf x; putchar('\n'); fflush(stdout);} while (0)
+#else
+#  define LOG(...)
+#  define LOG_METHOD
+#  define LOG_CMETHOD
+#  define COUNT(p)
+#  define LOG_TRACE(x)
+#endif
+
+#define NSLog(...) ;
+#import "SLDefinition.h"
+#import "SLGloble.h"
+#import "NSString+TM.h"
